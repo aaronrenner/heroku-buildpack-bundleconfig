@@ -1,8 +1,8 @@
 #!/bin/sh
 
-if [ -f $1/.heroku_bundle/config ]; then
-  echo "Using heroku-buildpack-bundleconfig"
-  exit 0
-else
-  exit 1
-fi
+# if [ -f $1/.heroku_bundle/config ]; then
+echo "heroku-buildpack-bundleconfig"
+exit 0
+# else
+#   exit 1
+# fi

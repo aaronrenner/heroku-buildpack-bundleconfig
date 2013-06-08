@@ -1,13 +1,20 @@
 #!/bin/sh
 # bin/compile <build-dir> <cache-dir>
 
+set -x
+
 echo "-----> Removing cached .bundle/config"
 
 if [ -f $2/.bundle/config ]; then 
   rm $2/.bundle/config
 fi
 
-echo "       Copying .heroku_bundle/config to .bundle/config"
+echo "       Writing new .bundle/config"
 
 mkdir -p $1/.bundle
-cp $1/.heroku_bundle/config $1/.bundle/config
+echo "---
+BUNDLE_BUILD__RGEO: --with-geos-dir=$1 --with-proj-dir=$1
+BUNDLE_PATH: vendor/bundle
+BUNDLE_BIN: vendor/bundle/bin
+BUNDLE_WITHOUT: development:test
+BUNDLE_DISABLE_SHARED_GEMS: \"1\"" > $1/.bundle/config
